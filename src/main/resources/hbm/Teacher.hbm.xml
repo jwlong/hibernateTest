@@ -1,26 +1,29 @@
-<?xml version="1.0" encoding="gb2312"?>
-<!-- ָ��Hiberante3ӳ���ļ���DTD��Ϣ -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 指定Hiberante3映射文件的DTD信息 -->
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- hibernate-mapping��ӳ���ļ��ĸ�Ԫ�� -->
+<!-- hibernate-mapping是映射文件的根元素 -->
 <hibernate-mapping package="com.dxfjyygy.domain">
-    <!-- ÿ��classԪ�ض�Ӧһ���־û����� -->
+    <!-- 每个class元素对应一个持久化对象 -->
     <class name="Teacher" table="teacher_table">
-        <!-- idԪ�ض���־û���ı�ʶ���� -->
+        <!-- id元素定义持久化类的标识属性 -->
         <id name="id">
             <generator class="native"/>
         </id>
-        <!-- propertyԪ�ض��峣������ -->
+        <!-- property元素定义常规属性 -->
         <property name="name" column="t_name" not-null="true"/>
         <property name="age"/>
-        <list name="students" table="t_student">
-                <key column="fk_teacher_id" not-null="true"/>
-                <list-index column="list_order" />
-                <!--<element type="Student" >-->
-                <!--</element>-->
-                <!--<one-to-many class="Student"></one-to-many>-->
+        <list name="students" table="student_list" cascade="all">
+            <!-- 维护对方的外键 -->
+            <key column="fk_teacher_id"></key>
+            <!-- index标签表示多的一方 对应一的一方的索引位置
+                column属性表示数据库中存放数据的字段
+                index为关键字 避免跟关键字冲突 使用`index` 或 [index]
+            -->
+            <index column="[index]" type="string"></index>
+            <!-- 建立一对多的关联 -->
+            <one-to-many class="Student" />
         </list>
-
     </class>
 </hibernate-mapping>

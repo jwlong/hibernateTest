@@ -6,7 +6,9 @@
 <!-- hibernate-mapping是映射文件的根元素 -->
 <hibernate-mapping package="com.dxfjyygy.domain">
     <!-- 每个class元素对应一个持久化对象 -->
-    <class name="News" table="news_table">
+    <class name="News" table="news_table" lazy="true" mutable="false" >
+        <!--二级缓存  一般设置为只读的-->
+        <cache usage="read-only" />
         <!-- id元素定义持久化类的标识属性 -->
         <id name="id">
             <generator class="native"/>

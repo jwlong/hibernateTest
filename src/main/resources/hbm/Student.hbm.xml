@@ -6,18 +6,13 @@
 <!-- hibernate-mapping是映射文件的根元素 -->
 <hibernate-mapping package="com.dxfjyygy.domain">
     <!-- 每个class元素对应一个持久化对象 -->
-    <class name="Student" table="news_table">
+    <class name="Student" table="student_list">
         <!-- id元素定义持久化类的标识属性 -->
         <id name="id">
             <generator class="native"/>
         </id>
         <!-- property元素定义常规属性 -->
-        <property name="title" not-null="true"/>
-        <property name="content"/>
-        <!-- 通过formula指定该属性值没有对应的实际数据列
-            该属性值将由系统根据表达式来生成-->
-        <property name="fullContent"
-                  formula="(select concat(nt.title,nt.content)
-			 from news_table nt where nt.id= id)"/>
+        <property name="name" not-null="true"/>
+        <property name="age" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

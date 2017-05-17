@@ -3,6 +3,8 @@ package hibernateTest.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+import hibernateTest.domain.Name;
+
 /**
  * map 的索引
  * Created by longjinwen on 2017/3/4.
@@ -11,7 +13,15 @@ import java.util.Map;
 public class Person {
     private Integer id;
     private int age;
-    private Map<Name,Integer> nickPower = new HashMap<Name, Integer>();
+    private Map<Name, Integer> nickPower = new HashMap<Name, Integer>();
+
+    public Map<Name, Integer> getNickPower() {
+        return nickPower;
+    }
+
+    public void setNickPower(Map<Name, Integer> nickPower) {
+        this.nickPower = nickPower;
+    }
 
     public Integer getId() {
         return id;
@@ -27,13 +37,5 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public Map<Name, Integer> getNickPower() {
-        return nickPower;
-    }
-
-    public void setNickPower(Map<Name, Integer> nickPower) {
-        this.nickPower = nickPower;
     }
 }

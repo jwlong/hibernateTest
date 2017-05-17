@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="defaultCache">
+
+ <diskStore path="java.io.tmpdir"/>
+
+ <cache
+  name="com.dxfjyygy.domain.News"
+  maxElementsInMemory="200"
+  eternal="false"
+  timeToIdleSeconds="120"
+  timeToLiveSeconds="300"
+  overflowToDisk="false"
+  memoryStoreEvictionPolicy="LRU"
+ />
+
+ <cache
+  name="productCache"
+  maxElementsInMemory="50"
+  eternal="false"
+  timeToIdleSeconds="120"
+  timeToLiveSeconds="300"
+  overflowToDisk="false"
+ />     
+</ehcache>

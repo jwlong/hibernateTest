@@ -11,7 +11,6 @@ public class HibernateUtil {
     private static HibernateUtil instance;
     private static SessionFactory sessionFactory;
     private HibernateUtil(){
-
     }
 
     public static HibernateUtil getInstance(){
@@ -29,8 +28,7 @@ public class HibernateUtil {
     }
     //public static
     public static Session currentSession(){
-        SessionFactory currentFactory = new Configuration().configure().buildSessionFactory();
-        return currentFactory.getCurrentSession();
+        return sessionFactory.getCurrentSession();
     }
     public static void closeSession(){
         if(currentSession() != null){

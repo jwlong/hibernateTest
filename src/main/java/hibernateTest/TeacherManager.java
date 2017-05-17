@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,7 @@ import java.util.List;
  */
 public class TeacherManager {
     public static void main(String[] args) {
-        Configuration cfg = new Configuration().configure();
-        SessionFactory sf  = cfg.buildSessionFactory();
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        //Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         Teacher t = new Teacher();
         t.setAge(50);
@@ -34,8 +32,21 @@ public class TeacherManager {
         students.add(s1);
         students.add(s2);
         t.setStudents(students);
-        session.save(t);
+        session.save(t);// Teacher 设置与Student的级联关系
+        t.setAge(12);
         tx.commit();
-        session.close();
+    }
+
+    @Test
+    public void deleteTeacher(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Teacher teacher = new Teacher();
+        Student student = new Student();
+        teacher.setAge(50);
+        student.setAge(11);
+        student.setName("111");
+        session.save(student);
+        tx.commit();
     }
 }
